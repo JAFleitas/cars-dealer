@@ -10,6 +10,13 @@
     "ts:node": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts"
   },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./src/test/setup.ts"
+    ]
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -30,9 +37,15 @@
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.14",
+    "@types/jest": "^29.1.2",
     "@types/morgan": "^1.9.3",
+    "@types/supertest": "^2.0.12",
+    "jest": "^29.2.0",
+    "mongodb-memory-server": "^8.9.3",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.20",
+    "supertest": "^6.3.0",
+    "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.4"
   }
