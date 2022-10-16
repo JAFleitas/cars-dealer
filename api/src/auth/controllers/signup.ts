@@ -5,7 +5,7 @@ const signup = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const existingUser = await User.findOne({ email });
 
-    if(existingUser) {
+    if (existingUser) {
         throw new Error('Email in use');
     }
 
