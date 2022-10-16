@@ -11,9 +11,8 @@ let mongo: any;
 
 beforeAll(async () => {
     process.env.JWT_KEY = "secret_key";
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-    mongo = await MongoMemoryServer.create();
+    mongo = await MongoMemoryServer.create({ binary: { version: '4.2.6' } });
     const mongoUri = mongo.getUri();
     await mongoose.connect(mongoUri, {});
 });
@@ -23,7 +22,7 @@ beforeEach(async () => {
     for(let collection of collections) {
         await collection.deleteMany({});
     }
-}):
+});
 
 afterAll(async () => {
     if(mongo) {
