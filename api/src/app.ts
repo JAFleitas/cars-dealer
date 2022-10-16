@@ -4,6 +4,9 @@ import cors from "cors";
 import { config } from "dotenv";
 import logger from "morgan";
 import { indexRouter } from "./routes";
+import { errorHandler } from './middlewares/errorHandler';
+import { NotFoundError } from "./errors/notFoundError";
+import 'express-async-errors';
 
 config();
 
@@ -23,5 +26,7 @@ app.use(
 
 // routes
 app.use(indexRouter);
+app.all('*', async () => { throw new NotFoundError() })
+app.use(errorHandler);
 
-export default app;
+export { app };

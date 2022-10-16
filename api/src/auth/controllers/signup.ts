@@ -1,9 +1,12 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+
+import { BadRequestError } from '../../errors/badRequestError';
 import { User } from '../../models/user';
 
 const signup = async (req: Request, res: Response) => {
     const { email, password } = req.body;
+    
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
@@ -15,7 +18,7 @@ const signup = async (req: Request, res: Response) => {
         password
     });
 
-    user.save();
+    await user.save();
 
     const userJwt = jwt.sign({
         id: user.id,
@@ -25,8 +28,6 @@ const signup = async (req: Request, res: Response) => {
     req.session = {
         jwt: userJwt
     };
-
-    console.log(req.session);
 
     res.status(201).send(user);
 };

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+import { BadRequestError } from '../../errors/badRequestError';
 import { User } from '../../models/user';
 import { Password } from '../../services/password';
 
@@ -9,7 +10,7 @@ const signin = async (req: Request, res: Response) => {
     const existingUser = await User.findOne({ email });
 
     if (!existingUser) {
-        throw new Error('Invalid credentials');
+        throw new BadRequestError('Invalid credentials');
     }
 
     const passwordsMatch = await Password.compare(
@@ -18,7 +19,7 @@ const signin = async (req: Request, res: Response) => {
     );
 
     if (!passwordsMatch) {
-        throw new Error('Invalid credentials');
+        throw new BadRequestError('Invalid credentials');
     }
 
     const userJwt = jwt.sign(
