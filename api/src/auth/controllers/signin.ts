@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
 import { User } from '../../models/user';
 import { Password } from '../../services/password';
 
@@ -18,6 +19,17 @@ const signin = async (req: Request, res: Response) => {
 
     if (!passwordsMatch) {
         throw new Error('Invalid credentials');
+    }
+
+    const userJwt = jwt.sign(
+        {
+            id: existingUser.id,
+            email: existingUser.email
+        }, process.env.JWT_KEY!
+    );
+
+    req.session = {
+        jwt: userJwt
     }
 
     res.status(200).send(existingUser);
