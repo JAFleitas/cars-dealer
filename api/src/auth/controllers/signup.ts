@@ -1,16 +1,16 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
 import { BadRequestError } from '../../errors/badRequestError';
 import { User } from '../../models/user';
 
-const signup = async (req: Request, res: Response) => {
+const signup = async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body;
     
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-        throw new Error('Email in use');
+        return next(new BadRequestError('Email in use'));
     }
 
     const user = User.build({
