@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
 import { User } from '../../models/user';
 
 const signup = async (req: Request, res: Response) => {
@@ -15,7 +16,18 @@ const signup = async (req: Request, res: Response) => {
     });
 
     user.save();
-    
+
+    const userJwt = jwt.sign({
+        id: user.id,
+        email: user.email
+    }, process.env.JWT_KEY!);
+
+    req.session = {
+        jwt: userJwt
+    };
+
+    console.log(req.session);
+
     res.status(201).send(user);
 };
 
