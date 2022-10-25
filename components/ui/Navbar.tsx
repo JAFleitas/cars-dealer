@@ -1,5 +1,5 @@
-import { CustonLink } from "./CustonLink";
-import { URLFormatter } from "../../utils/textFormatter";
+import { CustonLink } from "./";
+import { textFormatter } from "../../utils";
 const items = [
   "compra-tu-auto",
   "vende-tu-auto",
@@ -24,7 +24,7 @@ export const Navbar = () => {
             {items.map((item, index) => (
               <CustonLink key={index} href={item}>
                 <li className="mr-6 cursor-pointer text-gray-300 hover:text-white font-serif font-thin">
-                  {URLFormatter(item)}
+                  {textFormatter.URLFormatter(item)}
                 </li>
               </CustonLink>
             ))}
