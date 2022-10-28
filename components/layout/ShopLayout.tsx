@@ -28,7 +28,7 @@ export const ShopLayout: FC<PropsWithChildren<Props>> = ({
       </nav>
       {/* <Sidebar/> */}
 
-      <main className="my-20 mx-auto py-0 px-8 max-w-screen-2xl ">
+      <main className="my-20 mx-auto py-0 px-10 max-w-screen-2xl ">
         {children}
       </main>
     </>
