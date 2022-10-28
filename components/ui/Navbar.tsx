@@ -1,7 +1,14 @@
+import { useContext } from "react";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+
 import { ItemsMenu } from "./";
+import { UiContext } from "../../contexts";
 
 export const Navbar = () => {
+  //use Uicontext
+
+  const { toggleSideMenu, isMenuOpen } = useContext(UiContext);
+
   return (
     <div className="border-b-2 border-slate-300 shadow-md dark:bg-slate-800 px-10">
       <nav className="flex justify-between items-center h-20 w-full  ">
@@ -14,11 +21,15 @@ export const Navbar = () => {
           </h1>
         </div>
 
-        <div className="lg:flex flex-row w-3/4 justify-end hidden">
+        <div
+          className={`lg:${
+            isMenuOpen ? "hidden" : "flex"
+          } flex-row w-3/4 justify-end hidden `}
+        >
           <ItemsMenu />
         </div>
         <div>
-          <button className="lg:hidden flex">
+          <button onClick={toggleSideMenu} className="">
             <MenuOutlinedIcon className="text-slate-300 text-center text-3xl " />
           </button>
         </div>
