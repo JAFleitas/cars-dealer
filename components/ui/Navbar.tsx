@@ -6,7 +6,6 @@ import { UiContext } from "../../contexts";
 
 export const Navbar = () => {
   //use Uicontext
-
   const { toggleSideMenu, isMenuOpen } = useContext(UiContext);
 
   return (
@@ -22,8 +21,8 @@ export const Navbar = () => {
         </div>
 
         <div
-          className={`lg:${
-            isMenuOpen ? "hidden" : "flex"
+          style={{ display: isMenuOpen ? "none" : undefined }}
+          className={` lg:flex
           } flex-row w-3/4 justify-end hidden `}
         >
           <ItemsMenu />
