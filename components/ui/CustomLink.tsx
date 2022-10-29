@@ -1,10 +1,10 @@
-import { FC, PropsWithChildren } from "react";
-import Link from "next/link";
+import { FC, PropsWithChildren } from 'react';
+import Link from 'next/link';
 
 interface Props {
   href: string;
 }
-export const CustonLink: FC<PropsWithChildren<Props>> = ({
+export const CustomLink: FC<PropsWithChildren<Props>> = ({
   href,
   children,
 }) => {

@@ -1,3 +1,3 @@
-export * from "./Navbar";
-export * from "./CustonLink";
-export * from "./ItemsMenu";
+export * from './Navbar';
+export * from './CustomLink';
+export * from './ItemsMenu';
