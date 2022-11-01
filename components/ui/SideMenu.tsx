@@ -7,10 +7,10 @@ export const SideMenu = () => {
   const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
 
   useEffect(() => {
-    window.addEventListener("click", handleClick);
+    window.addEventListener("click", closeSideMenu);
 
     return () => {
-      window.removeEventListener("click", handleClick);
+      window.removeEventListener("click", closeSideMenu);
     };
   });
 
@@ -20,8 +20,8 @@ export const SideMenu = () => {
     }
   }, [isMenuOpen]);
 
-  const handleClick = (e: MouseEvent) => {
-    const mouseClick = e.clientX;
+  const closeSideMenu = (event: MouseEvent): void => {
+    const mouseClick = event.clientX;
     const totalScreem = window.innerWidth;
     const widthMenu: number = 256;
     if (mouseClick < totalScreem - widthMenu && isMenuOpen) {
