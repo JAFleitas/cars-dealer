@@ -1,6 +1,7 @@
-import Head from "next/head";
 import { FC, PropsWithChildren } from "react";
-import { Navbar } from "../ui/";
+import Head from "next/head";
+
+import { Navbar, SideMenu } from "../ui/";
 
 interface Props {
   title: string;
@@ -26,7 +27,7 @@ export const ShopLayout: FC<PropsWithChildren<Props>> = ({
       <nav>
         <Navbar />
       </nav>
-      {/* <Sidebar/> */}
+      <SideMenu />
 
       <main className="my-20 mx-auto py-0 px-10 max-w-screen-2xl ">
         {children}
